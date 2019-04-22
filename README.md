@@ -1,7 +1,7 @@
 # Kosmodules
 ## Free Modules
 ### OSFx2
-![OSFx2](gh_res/osf.png)
+![OSFx2](gh_res/osf.png =90x380)
 OSFx2 is a dual offsetter, attenuverter (with gain), and full-wave rectifier with switchable order, and CV control of all parameters.
 
 ###### IN
