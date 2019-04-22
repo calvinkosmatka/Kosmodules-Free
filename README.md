@@ -11,7 +11,7 @@ Mangled signal out.
 ###### ORD
 Order of Offsetting, Scaling, and Folding. Default order is Offset->Scale->Fold. Order is indicated by the lights next to the CV jacks for OFT, SCL, and FLD (green->yellow->red). Button cycles the order. Jack accepts a trigger pulse to cycle the order.
 ###### OFT
-Offset summed with output of previous stage. Knob ranges from -10.0 to 10.0. CV input is summed with knob value.
+Offset summed with output of previous stage. Knob ranges from -10.0 to 10.0. CV is summed with knob value.
 ###### SCL
 Scaling factor multiplied with output of previous stage. Knob ranges from -10.0 to 10.0. CV is summed with knob value.
 ###### FLD
