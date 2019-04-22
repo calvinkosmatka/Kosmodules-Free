@@ -19,7 +19,7 @@ Full-wave rectification applied to output of previous stage. Button toggles off 
 
 ## Paid Modules
 ### Distributions
-![Distributions](gh_res/distributions.png)
+<img src="gh_res/distributions.png" alt="Distributions" width="180" height="380"/>
 Distributions is a probability distribution-governed randomness source, with dual OSF built in and a display of the distribution post-OSF.
 ###### TRG
 Triggers a sample from the current distribution. Jack accepts a trigger pulse.
@@ -51,7 +51,7 @@ Beta. Knob+CV -10.0 to 10.0 maps to 0.001 to 20.001.
 #### OSF
 Two OSFs are applied to the sampled value. With the default parameters, these have no effect. In addition to the usual FLD settings, FLD includes a mirroring mode which rectifies, then inverts with probability .5. See [OSF](#osfx2) for reference.
 ### Strings
-![Strings](gh_res/strings.png)
+<img src="gh_res/strings.png" alt="Strings" width="150" height="380"/>
 Strings is an 8-step fractalline gate/dual-CV sequencer, based on the [Cantor set](https://en.wikipedia.org/wiki/Cantor_set).
 ###### GAT
 Controls if given step is active at the 'zero-iteration' level. 
