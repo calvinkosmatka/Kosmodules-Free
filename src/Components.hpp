@@ -1,8 +1,6 @@
 #pragma once
 #include "Kosmodules.hpp"
 
-using namespace rack;
-
 struct PointyKnob : RoundKnob {
 	PointyKnob() {
 		setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/pointyknob.svg")));
