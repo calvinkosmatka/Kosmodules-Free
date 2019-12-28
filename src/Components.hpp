@@ -4,7 +4,7 @@
 
 struct PointyKnob : RoundKnob {
 	PointyKnob() {
-		setSVG(SVG::load(assetPlugin(plugin, "res/pointyknob.svg")));
+		setSVG(SVG::load(assetPlugin(pluginInstance, "res/pointyknob.svg")));
 		removeChild(shadow);
 		// logic in step prevents smoothing, might as well turn it off and save some cpu
 		// no way to check for smoothing due to scope of engine
@@ -26,23 +26,23 @@ struct PointyKnobSnap : PointyKnob {
 };
 struct PointyKnobSmall : PointyKnob {
 	PointyKnobSmall() {
-		setSVG(SVG::load(assetPlugin(plugin, "res/pointyknobsmall.svg")));
+		setSVG(SVG::load(assetPlugin(pluginInstance, "res/pointyknobsmall.svg")));
 	}
 };
 struct PointyKnobTiny : PointyKnob {
 	PointyKnobTiny() {
-		setSVG(SVG::load(assetPlugin(plugin, "res/pointyknobtiny.svg")));
+		setSVG(SVG::load(assetPlugin(pluginInstance, "res/pointyknobtiny.svg")));
 	}
 };
 struct HexInJack : SVGPort {
 	HexInJack() {
 		removeChild(shadow);
-		setSVG(SVG::load(assetPlugin(plugin, "res/jack.svg")));
+		setSVG(SVG::load(assetPlugin(pluginInstance, "res/jack.svg")));
 	}
 };
 struct HexOutJack : HexInJack {
 	HexOutJack() {
-		setSVG(SVG::load(assetPlugin(plugin, "res/outjack.svg")));
+		setSVG(SVG::load(assetPlugin(pluginInstance, "res/outjack.svg")));
 	}
 };
 template <typename BASE>
@@ -60,9 +60,9 @@ struct GYRLight : GrayModuleLightWidget {
 };
 struct OSFModeSwitch_Mir: SVGSwitch, ToggleSwitch {
 	OSFModeSwitch_Mir() {
-		addFrame(SVG::load(assetPlugin(plugin, "res/osf_n.svg")));
-		addFrame(SVG::load(assetPlugin(plugin, "res/osf_f.svg")));
-		addFrame(SVG::load(assetPlugin(plugin, "res/osf_m.svg")));
+		addFrame(SVG::load(assetPlugin(pluginInstance, "res/osf_n.svg")));
+		addFrame(SVG::load(assetPlugin(pluginInstance, "res/osf_f.svg")));
+		addFrame(SVG::load(assetPlugin(pluginInstance, "res/osf_m.svg")));
 	}
 	void step() override {
 		//if mode changes out from under it
@@ -76,37 +76,37 @@ struct OSFModeSwitch_Mir: SVGSwitch, ToggleSwitch {
 };
 struct OSFSwitch : SVGSwitch, ToggleSwitch {
 	OSFSwitch() {
-		addFrame(SVG::load(assetPlugin(plugin, "res/osf_n.svg")));
-		addFrame(SVG::load(assetPlugin(plugin, "res/osf_f.svg")));
+		addFrame(SVG::load(assetPlugin(pluginInstance, "res/osf_n.svg")));
+		addFrame(SVG::load(assetPlugin(pluginInstance, "res/osf_f.svg")));
 	}
 };
 struct JuliaButton : SVGSwitch, MomentarySwitch {
 	JuliaButton() {
-		addFrame(SVG::load(assetPlugin(plugin, "res/JuliaButton_0.svg")));
-		addFrame(SVG::load(assetPlugin(plugin, "res/JuliaButton_3.svg")));
+		addFrame(SVG::load(assetPlugin(pluginInstance, "res/JuliaButton_0.svg")));
+		addFrame(SVG::load(assetPlugin(pluginInstance, "res/JuliaButton_3.svg")));
 	}
 };
 struct JuliaButtonTiny : SVGSwitch, MomentarySwitch {
 	JuliaButtonTiny() {
-		addFrame(SVG::load(assetPlugin(plugin, "res/JuliaButton_0_tiny.svg")));
-		addFrame(SVG::load(assetPlugin(plugin, "res/JuliaButton_3_tiny.svg")));
+		addFrame(SVG::load(assetPlugin(pluginInstance, "res/JuliaButton_0_tiny.svg")));
+		addFrame(SVG::load(assetPlugin(pluginInstance, "res/JuliaButton_3_tiny.svg")));
 	}
 };
 struct JuliaSwitch : SVGSwitch, ToggleSwitch {
 	JuliaSwitch() {
-		addFrame(SVG::load(assetPlugin(plugin, "res/JuliaButton_0.svg")));
-		addFrame(SVG::load(assetPlugin(plugin, "res/JuliaButton_3.svg")));
+		addFrame(SVG::load(assetPlugin(pluginInstance, "res/JuliaButton_0.svg")));
+		addFrame(SVG::load(assetPlugin(pluginInstance, "res/JuliaButton_3.svg")));
 	}
 };
 struct JuliaSwitchTiny : SVGSwitch, ToggleSwitch {
 	JuliaSwitchTiny() {
-		addFrame(SVG::load(assetPlugin(plugin, "res/JuliaButton_0_tiny.svg")));
-		addFrame(SVG::load(assetPlugin(plugin, "res/JuliaButton_3_tiny.svg")));
+		addFrame(SVG::load(assetPlugin(pluginInstance, "res/JuliaButton_0_tiny.svg")));
+		addFrame(SVG::load(assetPlugin(pluginInstance, "res/JuliaButton_3_tiny.svg")));
 	}
 };
 struct JuliaScrew : SVGScrew {
 	JuliaScrew() {
-		sw->setSVG(SVG::load(assetPlugin(plugin, "res/screw.svg")));
+		sw->setSVG(SVG::load(assetPlugin(pluginInstance, "res/screw.svg")));
 		box.size = sw->box.size;
 	}
 };

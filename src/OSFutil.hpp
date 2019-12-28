@@ -16,8 +16,8 @@ struct OSFutil{
 	bool fold_param = false;
 	bool mirror = false;
 	int cur_order = ORDER_OSF;
-	json_t *toJson();
-	void fromJson(json_t *rootJ);
+	json_t *dataToJson();
+	void dataFromJson(json_t *rootJ);
 	float process(float input);
 	float inv_process(float input, float *out2);
 };

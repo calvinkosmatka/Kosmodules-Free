@@ -1,12 +1,10 @@
 #include "Kosmodules.hpp"
 
 
-Plugin *plugin;
+Plugin *pluginInstance;
 
 void init(rack::Plugin *p) {
-	plugin = p;
-	p->slug = TOSTRING(SLUG);
-	p->version = TOSTRING(VERSION);
+	pluginInstance = p;
 
 	p->addModel(modelOSF);
 }

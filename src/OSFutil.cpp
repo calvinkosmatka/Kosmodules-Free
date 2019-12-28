@@ -1,12 +1,12 @@
 #include "OSFutil.hpp"
 
-json_t *OSFutil::toJson() {
+json_t *OSFutil::dataToJson() {
 	json_t *rootJ = json_object();
 	json_object_set_new(rootJ, "cur_order", json_integer(cur_order));
 	return rootJ;	
 }
 
-void OSFutil::fromJson(json_t *rootJ){
+void OSFutil::dataFromJson(json_t *rootJ){
 	json_t *orderJ = json_object_get(rootJ, "cur_order");
 	cur_order = json_integer_value(orderJ);
 }
