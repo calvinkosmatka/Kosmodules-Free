@@ -1,7 +1,6 @@
 #include "Kosmodules.hpp"
 
-
-Plugin *pluginInstance;
+rack::Plugin *pluginInstance;
 
 void init(rack::Plugin *p) {
 	pluginInstance = p;
