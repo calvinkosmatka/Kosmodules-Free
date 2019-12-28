@@ -1,6 +1,7 @@
 #pragma once
 #include "Kosmodules.hpp"
 
+using namespace rack;
 
 struct PointyKnob : RoundKnob {
 	PointyKnob() {
