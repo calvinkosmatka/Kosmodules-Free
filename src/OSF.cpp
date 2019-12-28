@@ -58,7 +58,7 @@ struct OSF : Module {
 	dsp::SchmittTrigger foldTriggers[2];
 	OSFutil osfs[2];
 	
-	OSF() : {
+	OSF() {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
 		configParam(OSF::ORDER_PARAM, 0.0f, 1.0f, 0.0f, "");
 		configParam(OSF::O_PARAM, -10.0, 10.0, 0.0, "");
@@ -182,7 +182,7 @@ void OSF::process(const ProcessArgs &args) {
 }
 
 struct OSFWidget : ModuleWidget {
-	OSFWidget(OSF *module){
+	OSFWidget(OSF *module) {
 		if (module) {
 			setModule(module);
 			setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/OSF.svg")));
