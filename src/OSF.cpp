@@ -53,13 +53,21 @@ struct OSF : Module {
 		F2_R_LIGHT,
 		NUM_LIGHTS
 	};
-	SchmittTrigger orderTriggers[2];
-	SchmittTrigger orderExtTriggers[2];
-	SchmittTrigger foldTriggers[2];
+	dsp::SchmittTrigger orderTriggers[2];
+	dsp::SchmittTrigger orderExtTriggers[2];
+	dsp::SchmittTrigger foldTriggers[2];
 	OSFutil osfs[2];
 	
 	OSF() : {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGTS);
+		configParam(OSF::ORDER_PARAM, 0.0f, 1.0f, 0.0f, "");
+		configParam(OSF::O_PARAM, -10.0, 10.0, 0.0, "");
+		configParam(OSF::S_PARAM, -10.0, 10.0, 1.0, "");
+		configParam(OSF::F_PARAM, 0.0, 1.0, 0.0, "");
+		configParam(OSF::ORDER2_PARAM, 0.0f, 1.0f, 0.0f, "");
+		configParam(OSF::O2_PARAM, -10.0, 10.0, 0.0, "");
+		configParam(OSF::S2_PARAM, -10.0, 10.0, 1.0, "");
+		configParam(OSF::F2_PARAM, 0.0, 1.0, 0.0, "");
 		for (int i=0; i<2; i++) {
 			lights[O_G_LIGHT + i * 9].setBrightness(1.0);
 			lights[S_Y_LIGHT + i * 9].setBrightness(1.0);
@@ -157,19 +165,19 @@ void OSF::osfLights(int osfIndex, int lightIndex) {
 	}
 }
 
-void OSF::step() {
+void OSF::process(const ProcessArgs &args) {
 	for (int i=0; i<2; i++) {
-		if (orderTriggers[i].process(params[ORDER_PARAM + i].value) || orderExtTriggers[i].process(inputs[ORDER_INPUT + i].value)) {
+		if (orderTriggers[i].process(params[ORDER_PARAM + i].getValue()) || orderExtTriggers[i].process(inputs[ORDER_INPUT + i].getValue())) {
 			osfs[i].cur_order = (osfs[i].cur_order + 1) % OSFutil::NUM_ORDERS;;
 			osfLights(i,O_G_LIGHT + i * 9); 
 		}
-		if (foldTriggers[i].process(inputs[F_INPUT + i * 3].value)) {
-			params[F_PARAM + i * 3].value = (float) (((int) params[F_PARAM + i * 3].value + 1) % 2);
+		if (foldTriggers[i].process(inputs[F_INPUT + i * 3].getVoltage())) {
+			params[F_PARAM + i * 3].getValue() = (float) (((int) params[F_PARAM + i * 3].getValue() + 1) % 2);
 		}
-		osfs[i].offset_param = params[O_PARAM + i * 3].value + inputs[O_INPUT + i * 3].value;
-		osfs[i].scale_param = params[S_PARAM + i * 3].value + inputs[S_INPUT + i * 3].value;
-		osfs[i].fold_param = ((int) params[F_PARAM + i * 3].value == 1);
-		outputs[OUT_OUTPUT + i].value = clamp(osfs[i].process(inputs[IN_INPUT + i].value),-10.0f, 10.0f);
+		osfs[i].offset_param = params[O_PARAM + i * 3].getValue() + inputs[O_INPUT + i * 3].getValue();
+		osfs[i].scale_param = params[S_PARAM + i * 3].getValue() + inputs[S_INPUT + i * 3].getValue();
+		osfs[i].fold_param = ((int) params[F_PARAM + i * 3].getValue() == 1);
+		outputs[OUT_OUTPUT + i].setVoltage() = clamp(osfs[i].process(inputs[IN_INPUT + i].getVoltage()),-10.0f, 10.0f);
 	}
 }
 
@@ -177,42 +185,42 @@ struct OSFWidget : ModuleWidget {
 	OSFWidget(OSF *module) : {
 		if (module) {
 			setModule(module);
-			setPanel(SVG::load(assetPlugin(pluginInstance, "res/OSF.svg")));
+			setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/OSF.svg")));
 			// OSF1	
-			addInput(createPort<HexInJack>(Vec(30,180-140), PortWidget::INPUT, module, OSF::ORDER_INPUT));
-			addParam(createParam<JuliaButton>(Vec(60,180-140), module, OSF::ORDER_PARAM, 0.0f, 1.0f, 0.0f));
-			addInput(createPort<HexInJack>(Vec(0,180-140), PortWidget::INPUT, module, OSF::IN_INPUT));
+			addInput(createInput<HexInJack>(Vec(30,180-140), module, OSF::ORDER_INPUT));
+			addParam(createParam<JuliaButton>(Vec(60,180-140), module, OSF::ORDER_PARAM));
+			addInput(createInput<HexInJack>(Vec(0,180-140), module, OSF::IN_INPUT));
 
-			addInput(createPort<HexInJack>(Vec(30,180-100), PortWidget::INPUT, module, OSF::O_INPUT));
-			addParam(createParam<PointyKnob>(Vec(60,180-100), module, OSF::O_PARAM, -10.0, 10.0, 0.0));
+			addInput(createInput<HexInJack>(Vec(30,180-100), module, OSF::O_INPUT));
+			addParam(createParam<PointyKnob>(Vec(60,180-100), module, OSF::O_PARAM));
 			addChild(createLight<OSFLight<GYRLight>>(Vec(30,180-100), module, OSF::O_G_LIGHT));
 			
 
-			addInput(createPort<HexInJack>(Vec(30,180-60), PortWidget::INPUT, module, OSF::S_INPUT));
-			addParam(createParam<PointyKnob>(Vec(60,180-60), module, OSF::S_PARAM, -10.0, 10.0, 1.0));
+			addInput(createInput<HexInJack>(Vec(30,180-60), module, OSF::S_INPUT));
+			addParam(createParam<PointyKnob>(Vec(60,180-60), module, OSF::S_PARAM));
 			addChild(createLight<OSFLight<GYRLight>>(Vec(30,180-60), module, OSF::S_G_LIGHT));
 
-			addInput(createPort<HexInJack>(Vec(30,180-20), PortWidget::INPUT, module, OSF::F_INPUT));
-			addParam(createParam<OSFSwitch>(Vec(60,180-20), module, OSF::F_PARAM, 0.0, 1.0, 0.0));
+			addInput(createInput<HexInJack>(Vec(30,180-20), module, OSF::F_INPUT));
+			addParam(createParam<OSFSwitch>(Vec(60,180-20), module, OSF::F_PARAM));
 			addChild(createLight<OSFLight<GYRLight>>(Vec(30,180-20), module, OSF::F_G_LIGHT));
-			addOutput(createPort<HexOutJack>(Vec(0,180-20), PortWidget::OUTPUT, module, OSF::OUT_OUTPUT));	
+			addOutput(createOutput<HexOutJack>(Vec(0,180-20), module, OSF::OUT_OUTPUT));	
 			// OSF2
-			addInput(createPort<HexInJack>(Vec(30,355-140), PortWidget::INPUT, module, OSF::ORDER2_INPUT));
-			addParam(createParam<JuliaButton>(Vec(60,355-140), module, OSF::ORDER2_PARAM, 0.0f, 1.0f, 0.0f));
-			addInput(createPort<HexInJack>(Vec(0,355-140), PortWidget::INPUT, module, OSF::IN2_INPUT));
+			addInput(createInput<HexInJack>(Vec(30,355-140), module, OSF::ORDER2_INPUT));
+			addParam(createParam<JuliaButton>(Vec(60,355-140), module, OSF::ORDER2_PARAM));
+			addInput(createInput<HexInJack>(Vec(0,355-140), module, OSF::IN2_INPUT));
 
-			addInput(createPort<HexInJack>(Vec(30,355-100), PortWidget::INPUT, module, OSF::O2_INPUT));
-			addParam(createParam<PointyKnob>(Vec(60,355-100), module, OSF::O2_PARAM, -10.0, 10.0, 0.0));
+			addInput(createInput<HexInJack>(Vec(30,355-100), module, OSF::O2_INPUT));
+			addParam(createParam<PointyKnob>(Vec(60,355-100), module, OSF::O2_PARAM));
 			addChild(createLight<OSFLight<GYRLight>>(Vec(30,355-100), module, OSF::O2_G_LIGHT));
 
-			addInput(createPort<HexInJack>(Vec(30,355-60), PortWidget::INPUT, module, OSF::S2_INPUT));
-			addParam(createParam<PointyKnob>(Vec(60,355-60), module, OSF::S2_PARAM, -10.0, 10.0, 1.0));
+			addInput(createInput<HexInJack>(Vec(30,355-60), module, OSF::S2_INPUT));
+			addParam(createParam<PointyKnob>(Vec(60,355-60), module, OSF::S2_PARAM));
 			addChild(createLight<OSFLight<GYRLight>>(Vec(30,355-60), module, OSF::S2_G_LIGHT));
 
-			addInput(createPort<HexInJack>(Vec(30,355-20), PortWidget::INPUT, module, OSF::F2_INPUT));
-			addParam(createParam<OSFSwitch>(Vec(60,355-20), module, OSF::F2_PARAM, 0.0, 1.0, 0.0));
+			addInput(createInput<HexInJack>(Vec(30,355-20), module, OSF::F2_INPUT));
+			addParam(createParam<OSFSwitch>(Vec(60,355-20), module, OSF::F2_PARAM));
 			addChild(createLight<OSFLight<GYRLight>>(Vec(30,355-20), module, OSF::F2_G_LIGHT));
-			addOutput(createPort<HexOutJack>(Vec(0,355-20), PortWidget::OUTPUT, module, OSF::OUT2_OUTPUT));	
+			addOutput(createOutput<HexOutJack>(Vec(0,355-20), module, OSF::OUT2_OUTPUT));	
 
 			// screws
 			addChild(createWidget<JuliaScrew>(Vec(0,365)));

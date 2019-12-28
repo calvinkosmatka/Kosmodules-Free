@@ -19,7 +19,7 @@ float OSFutil::process(float input){
 			input *= scale_param;
 			if (fold_param){
 				if (mirror) 
-					if (randomUniform() < .5)
+					if (random::uniform() < .5)
 			       			mir = -1.0;	
 				return  mir * fabsf(input);
 			}
@@ -28,7 +28,7 @@ float OSFutil::process(float input){
 			input = input + offset_param;
 			if (fold_param){
 				if (mirror) 
-					if (randomUniform() < .5)
+					if (random::uniform() < .5)
 			       			mir = -1.0;	
 				input =  mir * fabsf(input);
 			}
@@ -38,7 +38,7 @@ float OSFutil::process(float input){
 			input += offset_param;
 			if (fold_param){
 				if (mirror) 
-					if (randomUniform() < .5)
+					if (random::uniform() < .5)
 			       			mir = -1.0;	
 				return  mir * fabsf(input);
 			}
@@ -47,7 +47,7 @@ float OSFutil::process(float input){
 			input *= scale_param;
 			if (fold_param){
 				if (mirror) 
-					if (randomUniform() < .5)
+					if (random::uniform() < .5)
 			       			mir = -1.0;	
 				input =  mir * fabsf(input);
 			}
@@ -55,7 +55,7 @@ float OSFutil::process(float input){
 		case ORDER_FOS:
 			if (fold_param){
 				if (mirror) 
-					if (randomUniform() < .5)
+					if (random::uniform() < .5)
 			       			mir = -1.0;	
 				input =  mir * fabsf(input);
 			}
@@ -64,7 +64,7 @@ float OSFutil::process(float input){
 		case ORDER_FSO:
 			if (fold_param){
 				if (mirror) 
-					if (randomUniform() < .5)
+					if (random::uniform() < .5)
 			       			mir = -1.0;	
 				input =  mir * fabsf(input);
 			}
