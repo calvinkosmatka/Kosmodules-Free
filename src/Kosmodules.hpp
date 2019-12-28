@@ -1,8 +1,9 @@
 #include <rack.hpp>
-#include "Components.hpp"
 #include <string>
 
 using namespace rack;
+
+#include "Components.hpp"
 
 extern Plugin *pluginInstance;
 
