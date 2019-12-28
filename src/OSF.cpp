@@ -59,7 +59,7 @@ struct OSF : Module {
 	OSFutil osfs[2];
 	
 	OSF() : {
-		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGTS);
+		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
 		configParam(OSF::ORDER_PARAM, 0.0f, 1.0f, 0.0f, "");
 		configParam(OSF::O_PARAM, -10.0, 10.0, 0.0, "");
 		configParam(OSF::S_PARAM, -10.0, 10.0, 1.0, "");
