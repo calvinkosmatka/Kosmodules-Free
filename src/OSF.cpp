@@ -167,17 +167,17 @@ void OSF::osfLights(int osfIndex, int lightIndex) {
 
 void OSF::process(const ProcessArgs &args) {
 	for (int i=0; i<2; i++) {
-		if (orderTriggers[i].process(params[ORDER_PARAM + i].getValue()) || orderExtTriggers[i].process(inputs[ORDER_INPUT + i].getValue())) {
+		if (orderTriggers[i].process(params[ORDER_PARAM + i].getValue()) || orderExtTriggers[i].process(inputs[ORDER_INPUT + i].getVoltage())) {
 			osfs[i].cur_order = (osfs[i].cur_order + 1) % OSFutil::NUM_ORDERS;;
 			osfLights(i,O_G_LIGHT + i * 9); 
 		}
 		if (foldTriggers[i].process(inputs[F_INPUT + i * 3].getVoltage())) {
 			params[F_PARAM + i * 3].getValue() = (float) (((int) params[F_PARAM + i * 3].getValue() + 1) % 2);
 		}
-		osfs[i].offset_param = params[O_PARAM + i * 3].getValue() + inputs[O_INPUT + i * 3].getValue();
-		osfs[i].scale_param = params[S_PARAM + i * 3].getValue() + inputs[S_INPUT + i * 3].getValue();
+		osfs[i].offset_param = params[O_PARAM + i * 3].getValue() + inputs[O_INPUT + i * 3].getVoltage();
+		osfs[i].scale_param = params[S_PARAM + i * 3].getValue() + inputs[S_INPUT + i * 3].getVoltage();
 		osfs[i].fold_param = ((int) params[F_PARAM + i * 3].getValue() == 1);
-		outputs[OUT_OUTPUT + i].setVoltage() = clamp(osfs[i].process(inputs[IN_INPUT + i].getVoltage()),-10.0f, 10.0f);
+		outputs[OUT_OUTPUT + i].setVoltage(clamp(osfs[i].process(inputs[IN_INPUT + i].getVoltage()),-10.0f, 10.0f));
 	}
 }
 
