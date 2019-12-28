@@ -3,7 +3,7 @@
 
 struct PointyKnob : RoundKnob {
 	PointyKnob() {
-		setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/pointyknob.svg")));
+		setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/pointyknob.svg")));
 		removeChild(shadow);
 		// logic in step prevents smoothing, might as well turn it off and save some cpu
 		// no way to check for smoothing due to scope of engine
@@ -25,23 +25,23 @@ struct PointyKnobSnap : PointyKnob {
 };
 struct PointyKnobSmall : PointyKnob {
 	PointyKnobSmall() {
-		setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/pointyknobsmall.svg")));
+		setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/pointyknobsmall.svg")));
 	}
 };
 struct PointyKnobTiny : PointyKnob {
 	PointyKnobTiny() {
-		setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/pointyknobtiny.svg")));
+		setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/pointyknobtiny.svg")));
 	}
 };
-struct HexInJack : SVGPort {
+struct HexInJack : SvgPort {
 	HexInJack() {
 		removeChild(shadow);
-		setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/jack.svg")));
+		setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/jack.svg")));
 	}
 };
 struct HexOutJack : HexInJack {
 	HexOutJack() {
-		setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/outjack.svg")));
+		setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/outjack.svg")));
 	}
 };
 template <typename BASE>
@@ -103,9 +103,9 @@ struct JuliaSwitchTiny : SvgSwitch, ToggleSwitch {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_3_tiny.svg")));
 	}
 };
-struct JuliaScrew : SVGScrew {
+struct JuliaScrew : SvgScrew {
 	JuliaScrew() {
-		sw->setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/screw.svg")));
+		sw->setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/screw.svg")));
 		box.size = sw->box.size;
 	}
 };
