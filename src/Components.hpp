@@ -52,9 +52,9 @@ struct OSFLight : BASE {
 };
 struct GYRLight : GrayModuleLightWidget {
 	GYRLight() {
-		addBaseColor(COLOR_GREEN);
-		addBaseColor(COLOR_YELLOW);
-		addBaseColor(COLOR_RED);
+		addBaseColor(SCHEME_GREEN);
+		addBaseColor(SCHEME_YELLOW);
+		addBaseColor(SCHEME_RED);
 	}
 };
 struct OSFModeSwitch_Mir: SvgSwitch, ToggleSwitch {
