@@ -172,7 +172,7 @@ void OSF::process(const ProcessArgs &args) {
 			osfLights(i,O_G_LIGHT + i * 9); 
 		}
 		if (foldTriggers[i].process(inputs[F_INPUT + i * 3].getVoltage())) {
-			params[F_PARAM + i * 3].getValue() = (float) (((int) params[F_PARAM + i * 3].getValue() + 1) % 2);
+			params[F_PARAM + i * 3].setValue((float) (((int) params[F_PARAM + i * 3].getValue() + 1) % 2));
 		}
 		osfs[i].offset_param = params[O_PARAM + i * 3].getValue() + inputs[O_INPUT + i * 3].getVoltage();
 		osfs[i].scale_param = params[S_PARAM + i * 3].getValue() + inputs[S_INPUT + i * 3].getVoltage();
