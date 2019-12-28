@@ -5,9 +5,6 @@ struct PointyKnob : RoundKnob {
 	PointyKnob() {
 		setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/pointyknob.svg")));
 		removeChild(shadow);
-		// logic in step prevents smoothing, might as well turn it off and save some cpu
-		// no way to check for smoothing due to scope of engine
-		smooth = false;
 	}
 };
 struct PointyKnobSnap : PointyKnob {
