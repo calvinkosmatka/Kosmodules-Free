@@ -182,7 +182,7 @@ void OSF::process(const ProcessArgs &args) {
 }
 
 struct OSFWidget : ModuleWidget {
-	OSFWidget(OSF *module) : {
+	OSFWidget(OSF *module){
 		if (module) {
 			setModule(module);
 			setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/OSF.svg")));
