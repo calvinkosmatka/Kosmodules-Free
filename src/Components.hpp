@@ -58,7 +58,7 @@ struct GYRLight : GrayModuleLightWidget {
 		addBaseColor(COLOR_RED);
 	}
 };
-struct OSFModeSwitch_Mir: SVGSwitch, ToggleSwitch {
+struct OSFModeSwitch_Mir: SvgSwitch, ToggleSwitch {
 	OSFModeSwitch_Mir() {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_n.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_f.svg")));
@@ -71,34 +71,34 @@ struct OSFModeSwitch_Mir: SVGSwitch, ToggleSwitch {
 			event::Change e;
 			onChange(e);
 		}
-		SVGSwitch::step();
+		SvgSwitch::step();
 	}
 };
-struct OSFSwitch : SVGSwitch, ToggleSwitch {
+struct OSFSwitch : SvgSwitch, ToggleSwitch {
 	OSFSwitch() {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_n.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_f.svg")));
 	}
 };
-struct JuliaButton : SVGSwitch, MomentarySwitch {
+struct JuliaButton : SvgSwitch, MomentarySwitch {
 	JuliaButton() {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_0.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_3.svg")));
 	}
 };
-struct JuliaButtonTiny : SVGSwitch, MomentarySwitch {
+struct JuliaButtonTiny : SvgSwitch, MomentarySwitch {
 	JuliaButtonTiny() {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_0_tiny.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_3_tiny.svg")));
 	}
 };
-struct JuliaSwitch : SVGSwitch, ToggleSwitch {
+struct JuliaSwitch : SvgSwitch, ToggleSwitch {
 	JuliaSwitch() {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_0.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_3.svg")));
 	}
 };
-struct JuliaSwitchTiny : SVGSwitch, ToggleSwitch {
+struct JuliaSwitchTiny : SvgSwitch, ToggleSwitch {
 	JuliaSwitchTiny() {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_0_tiny.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_3_tiny.svg")));
