@@ -9,14 +9,6 @@ struct PointyKnob : RoundKnob {
 		// no way to check for smoothing due to scope of engine
 		smooth = false;
 	}
-	void step() override {
-		//if parameter changes out from under it (distribution changes)
-		if (value != paramQuantity->getValue()) {
-			this->value = clamp(paramQuantity->getValue(), paramQuantity->getMinValue(), paramQuantity->getMaxValue());
-			dirty = true;	
-		}
-		RoundKnob::step();
-	}
 };
 struct PointyKnobSnap : PointyKnob {
 	PointyKnobSnap() {
@@ -62,15 +54,6 @@ struct OSFModeSwitch_Mir: SvgSwitch, ToggleSwitch {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_n.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_f.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_m.svg")));
-	}
-	void step() override {
-		//if mode changes out from under it
-		if (value != paramQuantity->getValue()) {
-			value = paramQuantity->getValue();
-			event::Change e;
-			onChange(e);
-		}
-		SvgSwitch::step();
 	}
 };
 struct OSFSwitch : SvgSwitch, ToggleSwitch {
