@@ -11,8 +11,8 @@ struct PointyKnob : RoundKnob {
 	}
 	void step() override {
 		//if parameter changes out from under it (distribution changes)
-		if (value != module->params[paramId].getValue()) {
-			this->value = clamp(module->params[paramId].getValue(), fminf(minValue, maxValue), fmaxf(minValue, maxValue));
+		if (value != paramQuantity->getValue()) {
+			this->value = clamp(paramQuantity->getValue(), fminf(minValue, maxValue), fmaxf(minValue, maxValue));
 			dirty = true;	
 		}
 		RoundKnob::step();
