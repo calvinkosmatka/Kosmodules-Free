@@ -89,7 +89,7 @@ struct OSF : Module {
 		osfs[1].dataFromJson(osf2J);
 		osfLights(1, O2_G_LIGHT);
 	}
-	void step() override;
+	void process(const ProcessArgs &args) override;
 	void osfLights(int osfIndex, int lightIndex);
 
 };
