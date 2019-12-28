@@ -68,7 +68,7 @@ struct OSFModeSwitch_Mir: SVGSwitch, ToggleSwitch {
 		//if mode changes out from under it
 		if (value != module->params[paramId].getValue()) {
 			value = module->params[paramId].getValue();
-			EventChange e;
+			event::Change e;
 			onChange(e);
 		}
 		SVGSwitch::step();
