@@ -14,9 +14,9 @@
   "changelogUrl": "",
   "modules": [
     {
-      "slug": "Kosmodules-OSF",
+      "slug": "OSF",
       "name": "OSF",
-      "description": "",
+      "description": "Offset Scale Fold",
       "tags": [
         "attenuator"
       ]
