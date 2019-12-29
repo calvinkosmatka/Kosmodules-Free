@@ -46,38 +46,40 @@ struct GYRLight : GrayModuleLightWidget {
 		addBaseColor(SCHEME_RED);
 	}
 };
-struct OSFModeSwitch_Mir: SvgSwitch, LatchingSwitch {
+struct OSFModeSwitch_Mir: SvgSwitch {
 	OSFModeSwitch_Mir() {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_n.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_f.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_m.svg")));
 	}
 };
-struct OSFSwitch : SvgSwitch, LatchingSwitch {
+struct OSFSwitch : SvgSwitch {
 	OSFSwitch() {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_n.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_f.svg")));
 	}
 };
-struct JuliaButton : SvgSwitch, MomentarySwitch {
+struct JuliaButton : SvgSwitch {
 	JuliaButton() {
+		momentary = true;
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_0.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_3.svg")));
 	}
 };
-struct JuliaButtonTiny : SvgSwitch, MomentarySwitch {
+struct JuliaButtonTiny : SvgSwitch {
 	JuliaButtonTiny() {
+		momentary = true;
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_0_tiny.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_3_tiny.svg")));
 	}
 };
-struct JuliaSwitch : SvgSwitch, LatchingSwitch {
+struct JuliaSwitch : SvgSwitch {
 	JuliaSwitch() {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_0.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_3.svg")));
 	}
 };
-struct JuliaSwitchTiny : SvgSwitch, LatchingSwitch {
+struct JuliaSwitchTiny : SvgSwitch {
 	JuliaSwitchTiny() {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_0_tiny.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_3_tiny.svg")));
