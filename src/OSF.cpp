@@ -183,8 +183,8 @@ void OSF::process(const ProcessArgs &args) {
 
 struct OSFWidget : ModuleWidget {
 	OSFWidget(OSF *module) {
+		setModule(module);
 		if (module) {
-			setModule(module);
 			setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/OSF.svg")));
 			// OSF1	
 			addInput(createInput<HexInJack>(Vec(30,180-140), module, OSF::ORDER_INPUT));
