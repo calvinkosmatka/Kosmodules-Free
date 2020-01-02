@@ -4,7 +4,7 @@
 struct PointyKnob : RoundKnob {
 	PointyKnob() {
 		setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/pointyknob.svg")));
-		removeChild(shadow);
+		fb->removeChild(shadow);
 	}
 };
 struct PointyKnobSnap : PointyKnob {
@@ -24,7 +24,7 @@ struct PointyKnobTiny : PointyKnob {
 };
 struct HexInJack : SvgPort {
 	HexInJack() {
-		removeChild(shadow);
+		fb->removeChild(shadow);
 		setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/jack.svg")));
 	}
 };
@@ -51,12 +51,14 @@ struct OSFModeSwitch_Mir: SvgSwitch {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_n.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_f.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_m.svg")));
+		fb->removeChild(shadow);
 	}
 };
 struct OSFSwitch : SvgSwitch {
 	OSFSwitch() {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_n.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/osf_f.svg")));
+		fb->removeChild(shadow);
 	}
 };
 struct JuliaButton : SvgSwitch {
@@ -64,6 +66,7 @@ struct JuliaButton : SvgSwitch {
 		momentary = true;
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_0.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_3.svg")));
+		fb->removeChild(shadow);
 	}
 };
 struct JuliaButtonTiny : SvgSwitch {
@@ -71,18 +74,21 @@ struct JuliaButtonTiny : SvgSwitch {
 		momentary = true;
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_0_tiny.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_3_tiny.svg")));
+		fb->removeChild(shadow);
 	}
 };
 struct JuliaSwitch : SvgSwitch {
 	JuliaSwitch() {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_0.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_3.svg")));
+		fb->removeChild(shadow);
 	}
 };
 struct JuliaSwitchTiny : SvgSwitch {
 	JuliaSwitchTiny() {
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_0_tiny.svg")));
 		addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/JuliaButton_3_tiny.svg")));
+		fb->removeChild(shadow);
 	}
 };
 struct JuliaScrew : SvgScrew {

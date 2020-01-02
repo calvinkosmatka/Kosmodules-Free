@@ -3,9 +3,9 @@
 
 using namespace rack;
 
-#include "Components.hpp"
-
 extern Plugin *pluginInstance;
+
+#include "Components.hpp"
 
 extern Model *modelOSF;
 

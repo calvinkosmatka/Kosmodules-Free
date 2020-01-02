@@ -1,8 +1,8 @@
 #include "Kosmodules.hpp"
 
-rack::Plugin *pluginInstance;
+Plugin *pluginInstance;
 
-void init(rack::Plugin *p) {
+void init(Plugin *p) {
 	pluginInstance = p;
 
 	p->addModel(modelOSF);
