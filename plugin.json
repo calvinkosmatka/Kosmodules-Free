@@ -18,7 +18,9 @@
       "name": "OSF",
       "description": "Offset Scale Fold",
       "tags": [
-        "attenuator"
+        "attenuator",
+	"dual",
+	"utility"
       ]
     }
   ]
