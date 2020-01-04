@@ -106,12 +106,12 @@ struct NumberDisplay : TransparentWidget{
 		this->font = font;
 	}
 		
-	void draw(NVGcontext *vg) override {
+	void draw(const DrawArgs& args) override {
 		char text[5];
 		snprintf(text, sizeof(text), "%d", *number);
-		nvgFontSize(vg, 15);
-		nvgFontFaceId(vg, font->handle);
-		nvgFillColor(vg, nvgRGBA(0x00, 0x00, 0x00, 0xff));
-		nvgText(vg, 2, 18.75, text, NULL);	
+		nvgFontSize(args.vg, 15);
+		nvgFontFaceId(args.vg, font->handle);
+		nvgFillColor(args.vg, nvgRGBA(0x00, 0x00, 0x00, 0xff));
+		nvgText(args.vg, 2, 18.75, text, NULL);	
 	}
 };
